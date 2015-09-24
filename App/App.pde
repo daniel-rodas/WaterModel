@@ -36,7 +36,9 @@
    ParPApplet.init();
    ParPApplet.setBounds(240,240,100,100);
    ParPApplet.setup();
+
    add(ParPApplet);
+   
    
    frameRate(30);
  }
