@@ -12,7 +12,6 @@ abstract public class Atom implements AtomInterface {
         protons = prot;
         electrons = elec;
         neutrons = neut;
-
     }
     
     //        Read more: http://javarevisited.blogspot.com/2011/05/example-of-arraylist-in-java-tutorial.html#ixzz3mdE9UR4o
