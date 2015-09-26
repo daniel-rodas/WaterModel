@@ -5,10 +5,10 @@ public class ElectronParticle extends Particle {
     
     ElectronParticle(){
       
-      location[0] = (int) Math.floor( random( 300 ) ); // X
-      location[1] = (int) Math.floor( random( 300 ) ); // Y
-      location[2] = (int) Math.floor( random( 5 ) ); // Width
-      location[3] = (int) Math.floor( random( 5 ) ); // Height
+      location[0] = random( 300 ); // X
+      location[1] = random( 300 ); // Y
+      location[2] = random( 5  ); // Width
+      location[3] = random( 5  ); // Height
       
     particleColor[0] = 255; // Red
     particleColor[1] = 45; // Green
