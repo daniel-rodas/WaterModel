@@ -3,10 +3,10 @@ public class ProtonParticle extends Particle {
   
   ProtonParticle(){
     
-      location[0] = (int) Math.floor( random( 90 ) ); // X
-      location[1] = (int) Math.floor( random( 77 ) ); // Y
-      location[2] = (int) Math.floor( random( 16 ) ); // Width
-      location[3] = (int) Math.floor( random( 20 ) ); // Height
+      location[0] =   random( - 30,  30 ) ; // X
+      location[1] =   random( - 15 , 15) ; // Y
+      location[2] =   random( 16 ) ; // Width
+      location[3] =  random( 20 ) ; // Height
     
     particleColor[0] = 30; // Red
     particleColor[1] = 45; // Green
@@ -22,6 +22,14 @@ public class ProtonParticle extends Particle {
       particleColor[1] = random(255);
       particleColor[2] = random(255);
       particleColor[3] = random(255);
+    }
+    
+    public void circle()
+    {
+      frameRate(1);
+      super.circle();
+      frameRate(6);
+      
     }
     
     public void goCrazy()
