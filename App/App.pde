@@ -2,17 +2,20 @@
  *
  * @author Rodas
  */
+ 
+ 
+import controlP5.*;
+
+ControlP5 cp5;
+
+int temperatureSliderValue = 180;
 
 float xOrigin;
 float yOrigin;
 
-float zoom = 1;
-float angle = 0;
-
 WaterMolecule water;
 WaterMoleculeFactory waterFactory;
 float temperature;
-
 
 void setup()
 {
@@ -20,97 +23,79 @@ void setup()
   
   xOrigin = width/2;
   yOrigin = height/2;
-  
-  
+
+  cp5 = new ControlP5(this);
+
+  cp5.addSlider("temperatureSliderValue")
+     .setPosition(900,60)
+     .setSize(60,600)
+     .setRange(-50,200)
+     .setNumberOfTickMarks(9)
+     ;
+     
   waterFactory = new WaterMoleculeFactory();
 
 
   frameRate(4);
 }
+
 void draw()
 {
-  background( 125, 135, 253 );
+  pushMatrix();
+  
   translate(xOrigin, yOrigin);
-  scale(zoom);
-  rotate(angle);
-//  flyingSpaceShip(); 
-  thermometer ();
+
+  thermometer();
+  print("temperatureSliderValue");
+  print(temperatureSliderValue);
   water = (WaterMolecule) waterFactory.getMolecule();
+  
+  popMatrix();
 }
 
-void keyPressed() {
-  if (key == CODED)
+public void thermometer()
+{    
+  if ( (temperatureSliderValue <= 200) && ( temperatureSliderValue > 168))
   {
-    if (keyCode == UP)
-    {
-      zoom += 0.03;
-    }
-    else if (keyCode == DOWN)
-    {
-      zoom -= 0.03;
-    }
-    else if (keyCode == RIGHT)
-    {
-      angle += 0.03;
-    }
-    else if (keyCode == LEFT)
-    {
-      angle -= 0.03;
-    }
+        // Hot
+    background(245, 190, 120);
   }
   
-  if (key == ' ')
-  {
-    angle = 0;
-    zoom = 1;
-    xOrigin = width/2;
-    yOrigin =height/2;
-  }
-}
 
-void mouseDragged()
-{
-  xOrigin = xOrigin + (mouseX - pmouseX);
-  yOrigin = yOrigin + (mouseY - pmouseY);
-}
-
-public void flyingSpaceShip()
-{
-  ellipseMode(RADIUS);  // Set ellipseMode to RADIUS
-  fill(random(244));  // Set fill to white
-  ellipse(mouseX, mouseY, random(50), random(40));  // Draw white ellipse using RADIUS mode 
-  println("mouseX ");
-  print(mouseX);
-  println("mouseY ");
-  print(mouseY);
-
-  ellipseMode(CENTER);  // Set ellipseMode to CENTER
-  fill(100);  // Set fill to gray
-  ellipse(random(width/2), random(height/2), random(30), random(30));  // Draw gray ellipse using CENTER mode
-}
-
-public void thermometer ()
-{    
-  if ( (mouseY < 200) && ( mouseY > 20))
-    // Hot
-    fill(245, 90, 20);
-  temperature = 100.0;
-
-  if ( (mouseY < 400) && ( mouseY > 200))
-    // Warm
-    fill(145, 174, 225);
+  if ( (temperatureSliderValue <= 168) && ( temperatureSliderValue > 137))
+    {
+      // hotter
+    background(145, 174, 225);
+    }
    
-  temperature = 85;  
-  if ( (mouseY < 600 ) && ( mouseY > 400))
-    // Cold  
-    fill(65, 65, 125);
-  temperature = 50;      
-  if ( (mouseY < 700) && ( mouseY > 600 ) ) 
-    // Freezing
-    fill(244, 244, 252); 
-  temperature = 10;       
+  
+  if ( (temperatureSliderValue <= 137 ) && ( temperatureSliderValue > 106))
+    {
+      // Warmmer
+    background(135, 164, 215);
+    }
+   
+  if ( (temperatureSliderValue <= 106 ) && ( temperatureSliderValue > 75))
+    {
+      // warm  
+    background(140, 150, 185);
+    }  
+    
+  if ( (temperatureSliderValue <= 75) && ( temperatureSliderValue > 43 ) ) 
+    {
+      // cold
+    background(144, 144, 172);
+    }
+      
+  if ( (temperatureSliderValue <= 43) && ( temperatureSliderValue > 12 ) ) 
+    {
+      // colder
+    background(214, 224, 232);
+    }       
+  if ( (temperatureSliderValue <= 18) && ( temperatureSliderValue > 0 ) ) 
+    {
+      // Freezing
+    background(244, 244, 252);
+    }
 
-  rect(360, -340, 95, 700, 3, 6, 12, 18);
-  noFill();
 }
-
