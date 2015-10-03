@@ -5,6 +5,8 @@ public class WaterMoleculeFactory extends MoleculeBuilderFactory implements Mole
     
     protected ArrayList<AtomInterface> hydrogens = new ArrayList<AtomInterface>();
     
+    protected Molecule molecule;
+    
     /**
      *
      * @return Molecule
@@ -13,7 +15,12 @@ public class WaterMoleculeFactory extends MoleculeBuilderFactory implements Mole
         createAtoms( 2 , new HydrogenAtomFactory() , hydrogens ) ;
         createAtoms( 1 , new OxygenAtomFactory() , oxygens ) ;
         
-        return new WaterMolecule( hydrogens, oxygens );
+        molecule = new WaterMolecule( hydrogens, oxygens );    
+        molecule.bonds.add( makeBond( oxygens.get(0) , hydrogens.get(0) ) );
+        molecule.bonds.add( makeBond( oxygens.get(0) , hydrogens.get(1) ) );
+        
+        return molecule;
+  
     }
 
     /**

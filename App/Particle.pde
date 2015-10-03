@@ -1,4 +1,4 @@
-public class Particle {
+public class Particle extends PVector {
   float fillColor = random(50);
   protected float[] location = new float[4];
   protected float[] particleColor = new float[4];
@@ -47,19 +47,19 @@ void keyPressed() {
   {
     if (keyCode == UP)
     {
-      zoom += 0.3;
+      zoom += 0.1;
     }
     else if (keyCode == DOWN)
     {
-      zoom -= 0.3;
+      zoom -= 0.1;
     }
     else if (keyCode == RIGHT)
     {
-      angle += 0.3;
+      angle += 0.1;
     }
     else if (keyCode == LEFT)
     {
-      angle -= 0.3;
+      angle -= 0.1;
     }
   }
   
