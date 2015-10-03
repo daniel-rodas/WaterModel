@@ -20,17 +20,6 @@ public class WaterMoleculeFactory extends MoleculeBuilderFactory implements Mole
         molecule.bonds.add( makeBond( oxygens.get(0) , hydrogens.get(1) ) );
         
         return molecule;
-  
-    }
-
-    /**
-     *
-     * @return ArrayList<ArrayList<AtomInterface>> 
-     */
-
-    @Override
-    public void laugh() {
-        System.out.print("Water Molecules Laughing!");
     }
 
 }

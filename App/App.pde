@@ -35,25 +35,30 @@ void setup()
      ;
      
   waterFactory = new WaterMoleculeFactory();
-
-
-  frameRate(4);
+  water = (WaterMolecule) waterFactory.getMolecule();
 }
 
 void draw()
 {
   pushMatrix();
-  
   translate(xOrigin, yOrigin);
 
-  thermometer();
- 
-  water = (WaterMolecule) waterFactory.getMolecule();
-  
-  popMatrix();
   ControllerProperties props = cp5.getProperties();
   print(props);
+  
+  thermometer(); 
+  
+  water.draw();
+  
+  // Must be last statment in draw loop for shifting xOrigin and yOrigin.
+  popMatrix();
+
 }
+
+void keyPressed() 
+  {
+    water.keyPressed();
+  }
 
 public void thermometer()
 {    
@@ -64,8 +69,7 @@ public void thermometer()
     // water.chageState();
     
     // water.chageState();
-    
-    frameRate(26);
+
   }
   
 
@@ -75,8 +79,7 @@ public void thermometer()
     background(145, 174, 225);
     
     // water.chageState();
-    
-    frameRate(18);
+
     }
    
   
@@ -87,7 +90,7 @@ public void thermometer()
     
     // water.chageState();
     
-    frameRate(12);
+ 
     }
    
   if ( (temperatureSliderValue <= 125 ) && ( temperatureSliderValue > 100))
@@ -96,8 +99,7 @@ public void thermometer()
     background(140, 150, 185);
     
     // water.chageState();
-    
-    frameRate(8);
+
     }  
     
   if ( (temperatureSliderValue <= 100) && ( temperatureSliderValue > 75 ) ) 
@@ -106,8 +108,7 @@ public void thermometer()
     background(144, 144, 172);
     
     // water.chageState();
-    
-    frameRate(4);
+
     }
       
   if ( (temperatureSliderValue <= 75) && ( temperatureSliderValue > 50 ) ) 
@@ -116,8 +117,7 @@ public void thermometer()
     background(214, 224, 232);
     
     // water.chageState();
-    
-    frameRate(3);
+
     }       
   if ( (temperatureSliderValue <= 50) && ( temperatureSliderValue > 25 ) ) 
     {
@@ -125,18 +125,24 @@ public void thermometer()
     background(234, 234, 252);
     
     // water.chageState();
-    
-    frameRate(2);
+
     }
     
       if ( (temperatureSliderValue <= 25) && ( temperatureSliderValue > 0 ) ) 
     {
       // Freezing
-    background(244, 254, 252);
+    background(244, 244, 252);
     
     // water.chageState();
-    
-    frameRate(2);
-    }
 
+    }
+    
+    if ( (temperatureSliderValue <= 0)  ) 
+    {
+      // Freezing
+    background(254, 254, 252);
+    
+    // water.chageState();
+
+    }
 }
