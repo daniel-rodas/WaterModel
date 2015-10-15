@@ -1,22 +1,17 @@
 
-public class ProtonParticle extends Particle {
-  
-  ProtonParticle(){
-
-      location[0] = random( 3,  40 ) ; // X
-      location[1] = random( 15 , 55) ; // Y
-      location[2] =   random( 11, 22 ) ; // Width
-      location[3] =  location[2] ; // Height
+public class ProtonParticle extends Particle 
+{
+  ProtonParticle( PVector loc )
+  {
+    super(loc);
     
+    size[0] = TWO_PI * 0.8; // 2.345243272; // Width
+    size[1] = size[0] ;
+
     particleColor[0] = 30; // Red
     particleColor[1] = 45; // Green
     particleColor[2] = 250; // Blue
-    particleColor[3] = random(60 ,100); // Alpha 
- 
+    particleColor[3] = random(10, 30); // Alpha
   }
-    
-    public void goCrazy()
-    {
-      
-    }
 }
+

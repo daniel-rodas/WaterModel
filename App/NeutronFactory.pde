@@ -1,7 +1,14 @@
 
-public class NeutronFactory implements ParticleFactory {
+public class NeutronFactory extends ParticleFactory
+{
+  NeutronFactory( PVector loc )
+  {
+    super(loc);
+  }
 
-    public Particle getParticle() {
-        return new NeutronParticle( );
-    }
+  public Particle getParticle() 
+  {
+    return new NeutronParticle( location );
+  }
 }
+

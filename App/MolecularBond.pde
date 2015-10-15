@@ -9,16 +9,13 @@
  * @author Rodas
  */
 class MolecularBond {
-    AtomInterface atomA;
-    AtomInterface atomB;
-    
-    MolecularBond( AtomInterface a, AtomInterface b )
-    {
-        atomA = a;
-        atomB = b;
-        
-//        atomA.
-        
-//        print("New Bond !");
-    }
+  AtomInterface atomA;
+  AtomInterface atomB;
+
+  MolecularBond( AtomInterface a, AtomInterface b )
+  {
+    atomA = a;
+    atomB = b;
+  }
 }
+

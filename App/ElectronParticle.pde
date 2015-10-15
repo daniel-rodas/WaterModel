@@ -1,24 +1,19 @@
 
-public class ElectronParticle extends Particle {
+public class ElectronParticle extends Particle 
+{
+  private int potential;
 
-    private int potential;
+  ElectronParticle ( PVector loc )
+  {
+    super(loc);
     
-    ElectronParticle(){
-      
-      location[0] = random( 60, 500 ); // X
-      location[1] = random( 80, 300 ); // Y
-      location[2] = random( 4, 9  ); // Width
-      location[3] = location[2]; // Height
-      
+    size[0] = PI / 2; // 1.34; // Width
+    size[1] = size[0]; // Height
+
     particleColor[0] = 255; // Red
     particleColor[1] = 45; // Green
     particleColor[2] = 50; // Blue
-    particleColor[3] = random(10, 150); // Alpha 
+    particleColor[3] = random(30, 50); // Alpha
   }
-    public void jump() {
-    }
-    
-    public void display(){
-      System.out.print("Hellow!");
-    }
 }
+

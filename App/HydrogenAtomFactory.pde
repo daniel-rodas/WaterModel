@@ -1,27 +1,26 @@
 
-public class HydrogenAtomFactory extends AtomBuilderFactory implements AtomBuilderInterface {
-    
-    /**
-     *
-     */
-    protected int numberOfProtons = 1;
-        
-    protected int numberOfElectrons = 1;
-        
-    protected int numberOfNeutrons = 0;
+public class HydrogenAtomFactory extends AtomBuilderFactory implements AtomBuilderInterface 
+{
+  /**
+   *
+   */
+  protected int numberOfProtons = 1;
 
-    /**
-     *
-     * @return Atom
-     */
-    @Override
-    public AtomInterface getAtom() {
-//      AtomBuilderFactory.getParticles(numberOfProtons,numberOfElectrons,numberOfNeutrons);
-//      return new HydrogenAtom(AtomBuilderFactory.protons, AtomBuilderFactory.electrons, AtomBuilderFactory.neutrons );
+  protected int numberOfElectrons = 1;
 
+  protected int numberOfNeutrons = 0;
 
-      getParticles(numberOfProtons,numberOfElectrons,numberOfNeutrons);
-
-      return new HydrogenAtom( protons, electrons, neutrons );
-    }
+  /**
+   *
+   * @return Atom
+   */
+  @Override
+  public AtomInterface getAtom( PVector loc )
+  {
+    location.set(loc);
+    getParticles(numberOfProtons, numberOfElectrons, numberOfNeutrons);
+    return new HydrogenAtom(loc, protons, electrons, neutrons );
+  }
 }
+
+

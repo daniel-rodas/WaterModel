@@ -1,8 +1,14 @@
 
+public class ElectronFactory extends ParticleFactory
+{
+  ElectronFactory(PVector loc)
+  {
+    super(loc);
+  }
 
-public class ElectronFactory implements ParticleFactory {
-
-    public Particle getParticle() {
-        return new ElectronParticle();
-    }
+  public Particle getParticle() 
+  {
+    return new ElectronParticle(location);
+  }
 }
+

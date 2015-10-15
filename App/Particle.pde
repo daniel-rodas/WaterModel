@@ -1,63 +1,126 @@
-public class Particle extends PVector {
-  float fillColor = random(50);
-  protected float[] location = new float[4];
+public class Particle extends PVector
+{
+  float fillColor ;
+  protected float[] size = new float[2];
   protected float[] particleColor = new float[4];
+  protected float oscillation;
+  protected float radius;
+  protected float theta;
+  protected float x;
+  protected float y;
+  PVector velocity;
+  PVector acceleration;
+  protected PVector origin = new PVector();
 
-  float r ;
-  float theta ;
-
-  Particle() {
-    location[0] = random( 10, 550 ) ; // X
-    location[1] = random( 40, 350 ) ; // Y
-    location[2] =   random( 9 ) ; // Width
-    location[3] =   location[2] ; // Height
-    theta = 0;
-    r = height * 0.45;
+  Particle( PVector loc ) 
+  {
+    origin = loc.get() ;
+    acceleration = new PVector(0, 0.05);
+    velocity = new PVector(random(-1, 1), random(-2, 0));
+    size[0] =   random( 5 ) ; // Width
+    size[1] =   size[0] ; // Height
   }
 
   public void draw()
-  {
-    circle();
-  }
-
-  public void changeColor()
-  {
-    particleColor[0] = random(255);
-    particleColor[1] = random(255);
-    particleColor[2] = random(255);
-    particleColor[3] = random(255);
-  }
-
-  public void circle()
-  {
-    // Converting from polar (r, theta) to Cartesian (x,y)
-//    float x = r * cos(theta);
-//    float y = r * sin(theta);
-    
-    float x = ( location[0] ) * cos(theta + location[0] );
-    float y = ( location[1] ) * sin(theta + location[1] );
-
+  { 
     noStroke();
     ellipseMode(RADIUS);  // Set ellipseMode to RADIUS
-    fill( particleColor[0], particleColor[1], particleColor[2], particleColor[3] );  // Set fill to white
-    ellipse( x , y , location[2], location[3] );  // Draw white ellipse using RADIUS mode
-
-    ellipseMode(CENTER);  // Set ellipseMode to CENTER
-    fill( particleColor[0], particleColor[1], particleColor[2], particleColor[3] ); // Set fill to gray
-    ellipse( x , y, location[2], location[2] );   // Draw gray ellipse using CENTER mode
-
+    fill( particleColor[0], particleColor[1], particleColor[2], particleColor[3] );
+    ellipse( this.x + origin.x + x, this.y + origin.y + y, size[0], size[1]  ); 
     // increment the angle over time.
-    theta += 0.06;
+    theta += oscillation  ;
   }
-   
-  float getX(float r , float theta)
+
+  public void reset()
   {
-    return r * cos(theta);
+    oscillation = 1;
+    radius = 1;
+    theta = 1;
+    velocity.set(PI,PI);
+    acceleration.set(PI,PI);
+  }
+
+  // Method to update location
+  void update() {
+    velocity.add(acceleration);
+    this.add(velocity);
+  }
+
+  /*
+   *  Converting from polar (r, theta) to Cartesian (x,y)
+   *  float x = r * cos(theta);
+  /*/
+
+  public void setX(float X)
+  {
+    x = X;
+  }
+
+  public float getX()
+  {
+    return x;
+  }
+
+  public void setY( float Y )
+  {
+    y = Y;
+  }
+
+  public float getY()
+  {
+    return y;
+  }
+
+  float getPolarX(float r, float t)
+  {
+    return r * cos(t);
   } 
-  
-  float getY(float r , float theta)
+  /*
+   * float y = r * sin(theta);
+  /**/
+  float getPolarY(float r, float t)
   {
-    return r * sin(theta);
+    return r * sin(t);
+  }
+
+  public PVector makeBullsEye()
+  {
+    return this.get();
+  }
+
+  public PVector getLocation()
+  {
+    return this;
+  }
+
+  public void setOscillation(float o)
+  {
+    oscillation = o;
+  }
+
+  public float getOscillation()
+  {
+    return oscillation;
+  }
+
+  public void setRadius( float r )
+  {
+    radius = r;
+  }
+
+  public float getRadius()
+  {
+    return radius;
+  }
+
+  public void setTheta( float t )
+  {
+    theta = t;
+  }
+
+  public float getTheta()
+  {
+    return theta;
   }
 }
 
